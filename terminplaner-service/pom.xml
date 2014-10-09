@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>terminfinder</artifactId>
-        <groupId>name.krassmann.terminfinder</groupId>
+        <artifactId>terminplaner</artifactId>
+        <groupId>name.krassmann.terminplaner</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>terminfinder-service</artifactId>
+    <artifactId>terminplaner-service</artifactId>
     <packaging>war</packaging>
 
     <properties>
@@ -27,7 +27,7 @@
     </dependencies>
 
     <build>
-        <finalName>terminfinder-service</finalName>
+        <finalName>terminplaner-service</finalName>
     </build>
 
 

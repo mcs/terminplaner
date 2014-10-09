@@ -1,4 +1,4 @@
-package terminfinder.service.boundary;
+package terminplaner.service.boundary;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ApplicationPath("rest")
-public class TerminfinderApplication extends Application {
+public class TerminplanerApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {

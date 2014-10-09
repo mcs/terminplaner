@@ -1,7 +1,7 @@
-package terminfinder.service.boundary;
+package terminplaner.service.boundary;
 
-import terminfinder.service.control.TermineService;
-import terminfinder.service.entity.Terminplan;
+import terminplaner.service.control.TermineService;
+import terminplaner.service.entity.Terminplan;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;

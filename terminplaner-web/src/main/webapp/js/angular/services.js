@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('terminfinderServices', ['ngResource'])
+angular.module('terminplanerServices', ['ngResource'])
     .factory('Terminplan', function ($resource) {
-        return $resource(terminfinderApp.serviceUrl("/products/:productId"), {}, {
+        return $resource(terminplanerApp.serviceUrl("/products/:productId"), {}, {
         });
     })
     .factory('Order', function ($resource) {
-        var order = $resource(terminfinderApp.serviceUrl("/orders/:target"), {}, {
+        var order = $resource(terminplanerApp.serviceUrl("/orders/:target"), {}, {
             update: {
                 method: 'PUT'
             }

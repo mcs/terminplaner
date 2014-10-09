@@ -1,4 +1,4 @@
-package terminfinder.service.entity;
+package terminplaner.service.entity;
 
 import javax.faces.event.PreRenderComponentEvent;
 import javax.persistence.*;

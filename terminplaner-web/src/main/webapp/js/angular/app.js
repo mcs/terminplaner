@@ -1,12 +1,12 @@
 'use strict';
 
-var terminfinderApp = angular.module('terminfinder', ['ngRoute']);
+var terminplanerApp = angular.module('terminplaner', ['ngRoute']);
 
-terminfinderApp.serviceUrl = function (relativePath) {
-    return window.terminfinderServiceUrl + relativePath;
+terminplanerApp.serviceUrl = function (relativePath) {
+    return window.terminplanerServiceUrl + relativePath;
 };
 
-terminfinderApp.config(['$routeProvider', function ($routeProvider) {
+terminplanerApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/index', {templateUrl: 'partials/index.html'}).
 /*

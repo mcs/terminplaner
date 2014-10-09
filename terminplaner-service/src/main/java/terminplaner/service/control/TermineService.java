@@ -1,6 +1,6 @@
-package terminfinder.service.control;
+package terminplaner.service.control;
 
-import terminfinder.service.entity.Terminplan;
+import terminplaner.service.entity.Terminplan;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
