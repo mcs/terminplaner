@@ -29,12 +29,17 @@ public class TermineResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response createNewTerminplan(
+            Terminplan termin,
             @Context UriInfo uriInfo) {
-        Terminplan plan = termineService.createNewTerminplan();
+        if (termin == null)
+        termin = termineService.createNewTerminplan();
+        else {
+            termineService.save(termin);
+        }
         uriInfo.getRequestUriBuilder().path("").build();
-        URI location = uriInfo.getRequestUriBuilder().path(plan.getUuid()).build();
+        URI location = uriInfo.getRequestUriBuilder().path(termin.getUuid()).build();
         return Response
-                .ok(plan)
+                .ok(termin)
                 .location(location)
                 .link(location, "self")
                 .build();

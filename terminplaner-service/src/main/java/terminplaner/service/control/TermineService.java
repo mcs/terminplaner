@@ -23,4 +23,12 @@ public class TermineService {
         em.persist(plan);
         return plan;
     }
+
+    public void save(Terminplan termin) {
+        if (termin.getId() == null) {
+            em.persist(termin);
+        } else {
+            em.merge(termin);
+        }
+    }
 }

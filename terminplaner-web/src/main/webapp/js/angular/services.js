@@ -1,19 +1,17 @@
 'use strict';
 
-angular.module('terminplanerServices', ['ngResource'])
-    .factory('Terminplan', function ($resource) {
-        return $resource(terminplanerApp.serviceUrl("/products/:productId"), {}, {
-        });
-    })
-    .factory('Order', function ($resource) {
-        var order = $resource(terminplanerApp.serviceUrl("/orders/:target"), {}, {
+angular.module('terminplaner.services', ['ngResource'])
+    .factory('Termine', function ($resource) {
+        return $resource(terminplanerApp.serviceUrl("/termine/:uuid"), {}, {
             update: {
                 method: 'PUT'
             }
         });
-        //noinspection JSUnusedGlobalSymbols
-        order.prototype.displayState = function () {
-            return bundle[this.state];
-        };
-        return order
+    })
+    .factory('Termin', function ($resource) {
+        return $resource(terminplanerApp.serviceUrl("/termine/:target"), {}, {
+            update: {
+                method: 'PUT'
+            }
+        });
     });

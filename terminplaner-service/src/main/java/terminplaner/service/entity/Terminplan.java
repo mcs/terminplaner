@@ -1,10 +1,9 @@
 package terminplaner.service.entity;
 
-import javax.faces.event.PreRenderComponentEvent;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +17,12 @@ public class Terminplan implements Serializable {
     @Column(unique = true)
     private String uuid;
 
-    private String name;
+    private String summary;
+
+    @Column
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     @PrePersist
     public void initUuid() {
@@ -41,16 +45,24 @@ public class Terminplan implements Serializable {
         this.uuid = uuid;
     }
 
-    public String getName() {
-        return name;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSummary(String name) {
+        this.summary = name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
-        return String.format("Plan %s: %s", uuid, name);
+        return String.format("Plan %s: %s", uuid, summary);
     }
 }
