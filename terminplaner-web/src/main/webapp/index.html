@@ -28,7 +28,10 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li data-ng-class="{active: isCurrentPage('/termin/neu')}"><a href="#/termin/neu">Neuer Termin</a></li>
+                <li data-ng-class="{active: isCurrentPage('/user/login')}" data-ng-hide="user.isAuthorized()"><a href="#/user/login">Anmelden</a></li>
+                <li data-ng-class="{active: isCurrentPage('/user/login')}" data-ng-show="user.isAuthorized()"><a href="#" data-ng-click="logout()">{{user.username}} abmelden</a></li>
+                <li data-ng-class="{active: isCurrentPage('/termin/neu')}" data-ng-show="user.isAuthorized()"><a href="#/termin/neu">Neuer Termin</a></li>
+                <li data-ng-class="{active: isCurrentPage('/termine')}" data-ng-show="user.isAuthorized()"><a href="#/termine">Terminübersicht</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -38,9 +41,7 @@
 </div>
 
 <div class="container">
-    <div>
-        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-    </div>
+    <div alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</div>
 
     <div class="starter-template" data-ng-view></div>
 
@@ -54,7 +55,7 @@
 </div>
 
 <script type="text/javascript">
-    window.terminplanerServiceUrl = "http://localhost:8080/terminplaner-service/rest";
+    window.terminplanerServiceUrl = "http://localhost:8080/terminplaner-service";
 </script>
 
 <!--<script data-main="js/main" src="js/lib/require.js"></script>-->
@@ -63,6 +64,8 @@
 <script src="js/lib/bootstrap.js"></script>
 <script src="js/lib/moment.js"></script>
 <script src="js/lib/moment-locale_de.js"></script>
+
+<script src="js/lib/weblinking.js"></script>
 
 <script src="js/lib/angular.js"></script>
 <script src="js/lib/angular-resource.js"></script>

@@ -1,6 +1,19 @@
 "use strict";
 
-terminplanerApp.controller("BodyController", ["$scope", "$location", function ($scope, $location) {
+terminplanerApp.controller("BodyController", ["$scope", "$location", "$http", function ($scope, $location, $http) {
+
+    $scope.user = {
+        username: "",
+        authKey: "",
+        isAuthorized: function () {
+            return this.username && this.authKey;
+        }
+    };
+
+    $scope.updateHttpAuthHeaders = function () {
+        $http.defaults.headers.common["auth_key"] = $scope.user.authKey;
+    };
+
     $scope.isCurrentPage = function (testpage) {
         return $location.path() == testpage;
     };
@@ -16,13 +29,26 @@ terminplanerApp.controller("BodyController", ["$scope", "$location", function ($
         $scope.alerts.splice(index, 1);
     };
 
+    /**
+     * Logout a user and update HTTP Auth Headers
+     */
+    $scope.logout = function () {
+        $scope.user.username = "";
+        $scope.user.authKey = "";
+        $scope.updateHttpAuthHeaders();
+        $scope.alerts.push({type: "success", msg: "Abmeldung erfolgreich."});
+    };
+
 }]);
 
-terminplanerApp.controller("TerminNeuController", ["$scope", "Termine", "$location", function ($scope, Termine, $location) {
+terminplanerApp.controller("TerminNeuController", ["$scope", "Termine", function ($scope, Termine) {
     $scope.submit = function () {
-        Termine.save($scope.termin, function () {
+        Termine.save($scope.termin, function (termin, httpResponse) {
+                console.log("Termin = %o, HttpResponse = %o", termin, httpResponse);
                 $scope.alerts.push({type: "success", msg: "Termin erfolgreich angelegt."});
                 $scope.termin = new Termine();
+            }, function (x, y, z) {
+                console.error("x = %o - y = %o - z = %o", x, y, z);
             }
         );
     };
@@ -38,4 +64,33 @@ terminplanerApp.controller("TerminNeuController", ["$scope", "Termine", "$locati
         formatYear: 'yy',
         startingDay: 1
     };
+}]);
+
+terminplanerApp.controller("UserLoginController", ["$scope", "$location", "Login", function ($scope, $location, Login) {
+    /**
+     * Login a user and update HTTP Auth Headers
+     */
+    $scope.submit = function () {
+//            Login.save({username: $scope.username, password: $scope.password}, function (user) {
+//                $scope.user.username = user.username;
+//                $scope.user.authKey = user.authKey;
+//                $scope.updateHttpAuthHeaders();
+//                console.log("User erfolgreich angemeldet: %o", user);
+//            }, function (response) {
+//                console.error("Response = %o", response);
+//            });
+        var result = Login.send($scope.username, $scope.password);
+        result.success(function (user) {
+            $scope.user.username = user.username;
+            $scope.user.authKey = user.authKey;
+            $scope.updateHttpAuthHeaders();
+            $location.path("/");
+            $scope.alerts.push({type: "success", msg: "Willkommen, " + user.username});
+        });
+        result.error(function (data, statusCode, headers) {
+            $scope.alerts.push({type: "danger", msg: "Anmeldung fehlgeschlagen."});
+            console.error("data = %o, statusCode = %o", data, statusCode);
+        });
+    };
+
 }]);

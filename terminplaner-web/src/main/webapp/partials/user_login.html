@@ -1,0 +1,20 @@
+<h1>Benutzeranmeldung</h1>
+
+<p class="lead">Hier können Sie sich an der Anwendung anmelden. Angemeldete Benutzer können neue Termine
+organisieren.</p>
+
+<form class="form-horizontal" role="form" data-ng-submit="submit()">
+    <div class="form-group">
+        <label for="username" class="col-sm-2 control-label">Benuzername</label>
+        <div class="col-sm-4">
+            <input id="username" type="text" class="form-control" data-ng-model="username" data-ng-required="true" close-text="Close" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">Passwort</label>
+        <div class="col-sm-4">
+            <input id="password" type="password" data-ng-model="password" class="form-control" data-ng-required="true" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Anmelden</button>
+</form>

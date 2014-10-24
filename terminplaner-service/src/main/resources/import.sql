@@ -1,0 +1,9 @@
+-- User
+INSERT INTO USER (ID, USERNAME, PASSWORD, AUTHKEY) VALUES ('initId', 'initUsername', 'initPassword', 'initAuthKey');
+INSERT INTO USER (ID, USERNAME, PASSWORD, AUTHKEY) VALUES ('ui', 'un', 'up', 'ua');
+INSERT INTO USER (ID, USERNAME, PASSWORD, AUTHKEY) VALUES ('x', 'x', 'x', 'x');
+
+-- Termine
+INSERT INTO TERMINPLAN (ID, SUMMARY, DATE, USER_ID) VALUES ('tpId', 'tpSum', NOW(), 'initId');
+INSERT INTO TERMINPLAN (ID, SUMMARY, DATE, USER_ID) VALUES ('tpId2', 'tpSum2', NOW(), 'ui');
+INSERT INTO TERMINPLAN (ID, SUMMARY, DATE, USER_ID) VALUES ('tpId3', 'tpSum3', NOW(), 'initId');
