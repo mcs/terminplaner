@@ -47,8 +47,8 @@ terminplanerApp.controller("TerminNeuController", ["$scope", "Termine", function
                 console.log("Termin = %o, HttpResponse = %o", termin, httpResponse);
                 $scope.alerts.push({type: "success", msg: "Termin erfolgreich angelegt."});
                 $scope.termin = new Termine();
-            }, function (x, y, z) {
-                console.error("x = %o - y = %o - z = %o", x, y, z);
+            }, function (response) {
+                $scope.alerts.push({type: "danger", msg: "Der Termin konnte nicht angelegt werden: " + response.statusText});
             }
         );
     };
@@ -64,6 +64,10 @@ terminplanerApp.controller("TerminNeuController", ["$scope", "Termine", function
         formatYear: 'yy',
         startingDay: 1
     };
+}]);
+
+terminplanerApp.controller("TermineController", ["$scope", "Termine", function ($scope, Termine) {
+    $scope.termine = Termine.query();
 }]);
 
 terminplanerApp.controller("UserLoginController", ["$scope", "$location", "Login", function ($scope, $location, Login) {

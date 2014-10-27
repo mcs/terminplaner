@@ -1,24 +1,22 @@
-<h1>Neuer Termin</h1>
+<h1>Terminübersicht</h1>
 
-<p class="lead">Hier kannst du einen neuen Termin organisieren.</p>
+<p class="lead">Für folgende Termine bist du Organisator:</p>
 
-<form class="form-horizontal" role="form">
-    <div class="form-group">
-        <label for="date" class="col-sm-2 control-label">Datum</label>
-        <div class="col-sm-2">
-            <p class="input-group">
-                <input id="date" type="text" class="form-control" datepicker-popup="yyyy-MM-dd" data-ng-model="termin.date" is-open="opened" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                  </span>
-            </p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="summary" class="col-sm-2 control-label">Kurzbeschreibung</label>
-        <div class="col-sm-6">
-            <textarea id="summary" data-ng-model="termin.summary" class="form-control" rows="3"></textarea>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary" data-ng-click="submit()">Erstellen</button>
-</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Datum</th>
+        <th>Beschreibung</th>
+        <th>Teilnehmer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="termin in termine">
+        <td>{{termin.date}}</td>
+        <td>{{termin.summary}}</td>
+        <td>TODO</td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="#/termin/neu">Neue Termin erstellen...</a>
