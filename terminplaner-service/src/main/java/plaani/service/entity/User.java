@@ -20,10 +20,12 @@ public class User extends AbstractEntity {
     @Id
     private String id;
 
-    @NotNull @Size(min = 1)
+    @NotNull
+    @Size(min = 1)
     private String username;
 
-    @NotNull @Size(min = 1)
+    @NotNull
+    @Size(min = 1)
     private String password;
 
     private String authKey;
@@ -58,5 +60,10 @@ public class User extends AbstractEntity {
 
     public void setAuthKey(String authKey) {
         this.authKey = authKey;
+    }
+
+    @Override
+    public String toString() {
+        return "User " + id;
     }
 }
