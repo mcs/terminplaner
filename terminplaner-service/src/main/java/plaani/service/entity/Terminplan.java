@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Terminplan.findByUser", query = "SELECT t from Terminplan t where t.user = :user")
+        @NamedQuery(name = "Terminplan.findByUser", query = "select t from Terminplan t where t.user = :user")
 })
 public class Terminplan extends AbstractEntity {
 

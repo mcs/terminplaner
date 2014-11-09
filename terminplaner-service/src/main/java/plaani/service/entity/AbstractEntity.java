@@ -10,7 +10,7 @@ import java.util.Map;
 public abstract class AbstractEntity implements Serializable {
 
     @Transient
-    protected Map<String, String> links = new HashMap<>();
+    protected final Map<String, String> links = new HashMap<>();
 
     public void addLink(String rel, String uri) {
         links.put(rel, uri);

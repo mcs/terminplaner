@@ -14,9 +14,9 @@
     <tr data-ng-repeat="termin in termine">
         <td>{{termin.date}}</td>
         <td>{{termin.summary}}</td>
-        <td>TODO</td>
+        <td><p data-ng-repeat="invite in termin.invitations">{{invite.email}}</p></td>
     </tr>
     </tbody>
 </table>
 
-<a href="#/termin/neu">Neue Termin erstellen...</a>
+<a href="#/termine/neu">Neue Termin erstellen...</a>

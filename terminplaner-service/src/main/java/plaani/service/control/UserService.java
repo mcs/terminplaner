@@ -63,4 +63,9 @@ public class UserService {
             return null;
         }
     }
+
+    public void logout(User user) {
+        User persisted = em.find(User.class, user.getId());
+        persisted.setAuthKey(null);
+    }
 }

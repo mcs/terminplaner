@@ -13,6 +13,13 @@ angular.module('terminplaner.services', ['ngResource'])
             }
         });
     })
+    .factory('Invitations', function ($resource) {
+        return $resource(terminplanerApp.serviceUrl("/invitations/:id"), {}, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    })
     .factory('User', function ($resource) {
         return $resource(terminplanerApp.serviceUrl("/user"), {}, {
             update: {
@@ -26,12 +33,24 @@ angular.module('terminplaner.services', ['ngResource'])
                 var result = $http.post(terminplanerApp.serviceUrl("/login"), {username: username, password: password}, null);
                 console.log("Login result = %o", result);
                 return result;
+            },
+            auth: function (authCode) {
+                var result = $http.post(terminplanerApp.serviceUrl("/login"), {auth: authCode}, null);
+                console.log("Login result = %o", result);
+                return result;
+            },
+            logout: function (authCode) {
+                var result = $http.post(terminplanerApp.serviceUrl("/login/logout"), {auth: authCode}, null);
+                console.log("Logout result = %o", result);
+                return result;
             }
         };
-
-        return $resource(terminplanerApp.serviceUrl("/login"), {}, {
+    })
+    .factory('Logout', function ($resource) {
+        return $resource(terminplanerApp.serviceUrl("/logout"), {}, {
             update: {
                 method: 'PUT'
             }
         });
-    });
+    })
+;

@@ -21,7 +21,17 @@ public class LoginResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(Map<String, String> usermap,
                           @Context UriInfo uriInfo) {
-        User user = userService.login(usermap.get("username"), usermap.get("password"));
+        User user = null;
+        String username = usermap.get("username");
+        if (username != null && !username.isEmpty()) {
+            // manueller Login
+            String password = usermap.get("password");
+            user = userService.login(username, password);
+        } else {
+            // Login über E-Mail-Link
+            String auth = usermap.getOrDefault("auth", "");
+            user = userService.findByAuthKey(auth);
+        }
         if (user != null) {
             return Response
                     .ok(user)
@@ -35,4 +45,5 @@ public class LoginResource {
                     .build();
         }
     }
+
 }

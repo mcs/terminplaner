@@ -20,5 +20,17 @@
             <textarea id="summary" data-ng-model="termin.summary" class="form-control" rows="3"></textarea>
         </div>
     </div>
+    <div class="form-group">
+        <label for="emails" class="col-sm-2 control-label">Teilnehmer</label>
+        <div class="col-sm-6">
+            <textarea id="emails" data-ng-model="termin.emailsRaw" class="form-control" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <h3>Erkannte Mailadressen:</h3>
+        <ol>
+            <li data-ng-repeat="email in termin.emails track by $index">{{email}}</li>
+        </ol>
+    </div>
     <button type="submit" class="btn btn-primary" data-ng-click="submit()">Erstellen</button>
 </form>
