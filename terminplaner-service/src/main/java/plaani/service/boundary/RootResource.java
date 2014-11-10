@@ -22,7 +22,7 @@ public class RootResource {
         User currentUser = user.get();
         URI termine = uriInfo.getBaseUriBuilder().path("termine").build();
         URI login = uriInfo.getBaseUriBuilder().path(currentUser == null ? "login" : "logout").build();
-        return Response.ok()
+        return Response.ok("Links im HTTP-Header!")
                 .link(termine, "termine")
                 .link(login, currentUser == null ? "login" : "logout")
                 .build();
