@@ -1,0 +1,36 @@
+<h1>Neuer Termin</h1>
+
+<p class="lead">Hier kannst du einen neuen Termin organisieren.</p>
+
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="date" class="col-sm-2 control-label">Datum</label>
+        <div class="col-sm-2">
+            <p class="input-group">
+                <input id="date" type="text" class="form-control" datepicker-popup="yyyy-MM-dd" data-ng-model="termin.date" is-open="opened" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="summary" class="col-sm-2 control-label">Kurzbeschreibung</label>
+        <div class="col-sm-6">
+            <textarea id="summary" data-ng-model="termin.summary" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="emails" class="col-sm-2 control-label">Teilnehmer</label>
+        <div class="col-sm-6">
+            <textarea id="emails" data-ng-model="emailsRaw" class="form-control" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <h3>Erkannte Mailadressen:</h3>
+        <ol>
+            <li data-ng-repeat="email in termin.emails track by $index">{{email}}</li>
+        </ol>
+    </div>
+    <button type="submit" class="btn btn-primary" data-ng-click="submit()">Erstellen</button>
+</form>
